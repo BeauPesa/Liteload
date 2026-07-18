@@ -18,11 +18,32 @@ def main():
     pdf_path = Path(sys.argv[1])
 
     text = extract_text(pdf_path)
-
+    print("\n----- BEGIN EXTRACTED TEXT -----\n")
+    print(text)
+    print("\n----- END EXTRACTED TEXT -----\n")
+    warehouse = "WAXIE Livermore" if "WAXIE Livermore" in text else ""
+    carrier = ""
+    for line in text.splitlines():
+        if line.startswith("Carrier:"):
+            carrier = line.replace("Carrier:", "").strip()
+    print(f"Warehouse variable: '{warehouse}'")
+    print(f"Carrier variable: '{carrier}'")
     result = {
-        "source_file": pdf_path.name,
-        "raw_text": text
-    }
+    "source_file": pdf_path.name,
+
+    "metadata": {
+        "warehouse": warehouse,
+        "route": carrier,
+        "truck": "",
+        "driver": "",
+        "date": "",
+        "totalCube": 0
+    },
+
+    "stops": [],
+
+    "raw_text": text
+}
 
     output_path = Path("output") / f"{pdf_path.stem}.json"
 
