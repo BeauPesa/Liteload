@@ -46,10 +46,19 @@ app.post("/parse", upload.single("pdf"), (req, res) => {
       });
     }
 
-    res.json({
-      success: true,
-      output: stdout,
-    });
+    let route;
+
+try {
+  route = JSON.parse(stdout);
+} catch (err) {
+  return res.status(500).json({
+    success: false,
+    error: "Parser did not return valid JSON.",
+    output: stdout,
+  });
+}
+
+res.json(route);
   });
 });
 

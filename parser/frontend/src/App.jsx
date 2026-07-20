@@ -61,6 +61,10 @@ function App() {
         />
 
         <p>{status}</p>
+
+       {route && (
+          <pre>{JSON.stringify(route, null, 2)}</pre>
+       )}
       </section>
     </main>
   );

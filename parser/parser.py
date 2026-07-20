@@ -18,16 +18,16 @@ def main():
     pdf_path = Path(sys.argv[1])
 
     text = extract_text(pdf_path)
-    print("\n----- BEGIN EXTRACTED TEXT -----\n")
-    print(text)
-    print("\n----- END EXTRACTED TEXT -----\n")
+    #print("\n----- BEGIN EXTRACTED TEXT -----\n")
+    #print(text)
+    #print("\n----- END EXTRACTED TEXT -----\n")
     warehouse = "WAXIE Livermore" if "WAXIE Livermore" in text else ""
     carrier = ""
     for line in text.splitlines():
         if line.startswith("Carrier:"):
             carrier = line.replace("Carrier:", "").strip()
-    print(f"Warehouse variable: '{warehouse}'")
-    print(f"Carrier variable: '{carrier}'")
+    #print(f"Warehouse variable: '{warehouse}'")
+    #print(f"Carrier variable: '{carrier}'")
     result = {
     "source_file": pdf_path.name,
 
@@ -55,7 +55,9 @@ def main():
     with output_path.open("w", encoding="utf-8") as f:
         json.dump(result, f, indent=2)
 
-    print(f"✓ Created {output_path}")
+    print(json.dumps(result))
+
+    #print(f"✓ Created {output_path}")
 
 
 if __name__ == "__main__":
