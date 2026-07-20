@@ -9,7 +9,7 @@ Instead of replacing an organization's Warehouse Management System (WMS), LiteLo
 ## The Objective
 
 - Less time decoding paperwork.
-- Increased loading accurately.
+- Increased loading accuracy.
 - Better software for physically demanding work.
 
 ---
