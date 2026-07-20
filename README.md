@@ -30,24 +30,25 @@ Rather than asking warehouse workers to adapt to legacy software, LiteLoad adapt
 
 ## Architecture
 
-```
-                Warehouse Data
-        ┌──────────────┬──────────────┬──────────────┐
-        │              │              │
-     AS/400 PDF      CSV Export     WMS APIs
-        │              │              │
-     Parser        Parser         Adapter
-        └──────────────┴──────────────┘
-                       │
-                       ▼
-                 LiteLoad JSON
-                       │
-                       ▼
-                 React Frontend
-                       │
-                       ▼
-               Loader Experience
-```
+Warehouse Data
+      │
+      ▼
+Python Parser
+(understands warehouses)
+      │
+      ▼
+Structured Route Object
+      │
+      ▼
+Express API
+(transports data)
+      │
+      ▼
+React UI
+(presents data)
+      │
+      ▼
+Warehouse Worker
 
 Each warehouse system has its own parser or adapter.
 
