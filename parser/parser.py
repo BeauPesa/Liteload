@@ -45,7 +45,12 @@ def main():
     "raw_text": text
 }
 
-    output_path = Path("output") / f"{pdf_path.stem}.json"
+    BASE_DIR = Path(__file__).resolve().parent
+    OUTPUT_DIR = BASE_DIR / "output"
+    OUTPUT_DIR.mkdir(exist_ok=True)
+
+    output_filename = pdf_path.stem + ".json"
+    output_path = OUTPUT_DIR / output_filename
 
     with output_path.open("w", encoding="utf-8") as f:
         json.dump(result, f, indent=2)
