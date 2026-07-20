@@ -1,12 +1,12 @@
 # LiteLoad
 
-> **Reducing cognitive load for warehouse teams.**
+**Reducing cognitive load for warehouse teams.**
 
-LiteLoad is a loader-first warehouse interface that transforms legacy load manifests into a modern, structured workflow.
+LiteLoad is a loader-first warehouse application that transforms legacy warehouse data into a modern, structured loading experience.
 
-Instead of replacing an organization's Warehouse Management System (WMS), LiteLoad translates operational data into a consistent internal model and presents it through an interface designed for the people who actually load trucks.
+Instead of replacing an organization's Warehouse Management System (WMS), LiteLoad translates operational data into a consistent internal route model and presents it through an interface designed for the people who actually load trucks.
 
-The objective is simple:
+## The Objective
 
 - Less time decoding paperwork.
 - More time loading accurately.
@@ -14,7 +14,7 @@ The objective is simple:
 
 ---
 
-## Why LiteLoad?
+# Why LiteLoad?
 
 Most warehouse software is designed around inventory, planning, and management.
 
@@ -28,75 +28,103 @@ Rather than asking warehouse workers to adapt to legacy software, LiteLoad adapt
 
 ---
 
-## Architecture
+# Architecture
 
-Warehouse Data
-      │
-      ▼
-Python Parser
-(understands warehouses)
-      │
-      ▼
-Structured Route Object
-      │
-      ▼
-Express API
-(transports data)
-      │
-      ▼
-React UI
-(presents data)
-      │
-      ▼
-Warehouse Worker
+LiteLoad separates **data translation** from **user experience**.
 
-Each warehouse system has its own parser or adapter.
+Every warehouse system has its own parser or adapter, but every parser produces the same standardized route model.
 
-Their only responsibility is to translate data into LiteLoad's internal JSON schema.
+```text
+                    LiteLoad
 
-Once data reaches that format, every downstream component remains unchanged.
+        Warehouse Systems / Documents
+   ┌─────────────┬─────────────┬─────────────┐
+   │             │             │
+ AS/400 PDF   CSV Export    WMS APIs
+   │             │             │
+   └─────────────┴─────────────┘
+                 │
+                 ▼
+        Python Parsers / Adapters
+                 │
+                 ▼
+        Standardized Route Model
+                 │
+                 ▼
+         Express Backend API
+                 │
+                 ▼
+        React Loader Interface
+                 │
+                 ▼
+      Faster • Safer • Lower Cognitive Load
+```
 
-This separation allows LiteLoad to support additional warehouse systems without redesigning the interface.
+### Component Responsibilities
+
+### Python
+
+- Understands warehouse documents
+- Extracts routes, stops, quantities, and metadata
+- Produces a standardized route model
+
+### Express
+
+- Connects React to the parser
+- Receives uploaded documents
+- Executes the parser
+- Returns structured route data
+
+### React
+
+- Presents warehouse information clearly
+- Handles user interaction
+- Renders the loader-first workflow
+
+Because each parser produces the same route model, LiteLoad can support additional warehouse systems without redesigning the interface.
 
 ---
 
-## Current Status
+# Current Status
 
-### Completed
+## Completed
 
-- Python PDF text extraction
-- Initial parser architecture
-- JSON generation pipeline
-- GitHub Pages deployment
-- Loader-first interface research
-- Warehouse workflow analysis
+- ✅ PDF text extraction
+- ✅ Parser architecture
+- ✅ Standardized route model
+- ✅ Express backend
+- ✅ React application
+- ✅ GitHub Pages deployment
+- ✅ Loader-first UX research
+- ✅ Warehouse workflow analysis
 
-### In Progress
+## In Progress
 
-- Structured route parser
-- React component library
-- Interactive loading interface
-- Route visualization
-- Warehouse pilot
+- 🔄 React ↔ Express integration
+- 🔄 Live PDF upload
+- 🔄 Dynamic route rendering
+- 🔄 Interactive loading workflow
+- 🔄 Warehouse pilot
 
 ---
 
-## Technology Stack
+# Technology Stack
 
-### Backend
+## Backend
 
 - Python
 - pypdf
-- JSON
+- Express.js
+- REST API
 
-### Frontend
+## Frontend
 
 - React
 - HTML
 - CSS
 - JavaScript
 
-### Development
+## Development
 
 - Git
 - GitHub
@@ -105,51 +133,52 @@ This separation allows LiteLoad to support additional warehouse systems without 
 
 ---
 
-## Design Principles
+# Design Principles
 
-### Loader First
+## Loader First
 
 Reduce cognitive effort wherever possible.
 
-### Human-Centered
+## Human-Centered
 
-Warehouse software should support the worker, not the other way around.
+Warehouse software should support the worker—not the other way around.
 
-### Modular
+## Modular
 
-Separate data translation from interface design.
+Separate data translation from presentation.
 
-### Extensible
+## Extensible
 
-Support new warehouse systems through additional parsers and adapters rather than rewriting the application.
+Support additional warehouse systems by adding parsers and adapters rather than redesigning the application.
 
-### Offline Friendly
+## Offline Friendly
 
 Core workflows should not depend on continuous cloud connectivity or AI services.
 
 ---
 
-## Roadmap
+# Roadmap
 
-- [x] PDF text extraction
-- [x] Initial parser architecture
-- [x] LiteLoad JSON pipeline
-- [ ] Structured route parser
-- [ ] React interface
-- [ ] Drag-and-drop truck loading
-- [ ] Multi-WMS adapters
-- [ ] Warehouse pilot
-- [ ] Production deployment
+- ✅ PDF text extraction
+- ✅ Parser architecture
+- ✅ Standardized route model
+- ✅ Express backend
+- 🔄 React integration
+- 🔄 Dynamic route rendering
+- ⏳ Drag-and-drop loading workflow
+- ⏳ Multi-WMS adapters
+- ⏳ Warehouse pilot
+- ⏳ Production deployment
 
 ---
 
-## Project Vision
+# Project Vision
 
-LiteLoad is not intended to replace warehouse management systems.
+LiteLoad is not intended to replace Warehouse Management Systems.
 
-Its purpose is to improve the final stage of warehouse operations—the point where operational data becomes physical work.
+Its purpose is to modernize the final stage of warehouse operations—the point where operational data becomes physical work.
 
-By separating data translation from presentation, LiteLoad creates a scalable architecture capable of supporting multiple warehouse systems while maintaining a single, consistent user experience.
+By separating data translation from presentation, LiteLoad creates a scalable architecture capable of supporting multiple warehouse systems while maintaining a consistent loader experience.
 
 Good software should reduce mental workload.
 
@@ -157,6 +186,6 @@ Warehouse workers deserve software designed with the same care as the systems bu
 
 ---
 
-## License
+# License
 
 MIT License
