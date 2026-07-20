@@ -14,7 +14,7 @@ Instead of replacing an organization's Warehouse Management System (WMS), LiteLo
 
 ---
 
-# Why LiteLoad?
+# Why?
 
 Most warehouse software is designed around inventory, planning, and management.
 
