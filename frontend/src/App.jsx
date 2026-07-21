@@ -90,16 +90,11 @@ function App() {
 
   return (
     <main className={`app ${isLoading ? "is-loading" : ""}`}>
-      <div className="background-icons" aria-hidden="true">
-        {Array.from({ length: 24 }).map((_, index) => (
-          <span
-            key={index}
-            className={`background-icon icon-${(index % 6) + 1}`}
-          />
-        ))}
-      </div>
+      
+      <div className="app-background" aria-hidden="true" />
 
       <div className="app-shell">
+
         <header className="brand-header">
           <img
              className="brand-logo"
@@ -109,8 +104,9 @@ function App() {
 
           <div className="brand-copy">
             <div className="wordmark">
-              <span>LITE-</span>
-              <span>LOAD</span>
+            <span className="lite">LITE</span>
+            <span className="hyphen"> | </span>
+            <span className="load">LOAD</span>
             </div>
 
             <p>LET’S STACK THIS PAPER</p>

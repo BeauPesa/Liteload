@@ -12,7 +12,9 @@
   --shadow: rgba(20, 35, 70, 0.22);
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -39,8 +41,19 @@ button {
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-  padding: 64px 24px 48px;
+  padding: 28px 24px 32px;
   background: var(--background);
+}
+
+.app-background {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: url("/assets/liteload-background-static.svg");
+  background-position: center top;
+  background-repeat: repeat-y;
+  background-size: 100% auto;
+  pointer-events: none;
 }
 
 .app-shell {
@@ -52,15 +65,18 @@ button {
 
 /* Brand */
 
+
 .brand-header {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 14px;
+  min-height: 68px;
 }
 
 .brand-logo {
-  width: 78px;
-  height: 78px;
+  width: 77px;
+  height: 77px;
+  flex: 0 0 auto;
   object-fit: contain;
 }
 
@@ -68,44 +84,56 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 7px;
 }
 
 .wordmark {
   display: flex;
-  align-items: center;
-  font-size: clamp(34px, 5vw, 52px);
+  align-items: baseline;
+  gap: 0;
+  font-size: clamp(30px, 4vw, 42px);
   font-weight: 900;
-  line-height: 0.9;
-  letter-spacing: -2px;
+  line-height: 0.82;
 }
 
-.wordmark span:first-child {
+.lite {
   color: var(--navy);
+  letter-spacing: -1.5px;
 }
 
-.wordmark span:last-child {
+.load {
   color: var(--lime);
+  letter-spacing: -1.5px;
+}
+
+.hyphen {
+  color: var(--navy);
+  display: inline-block;
+  margin: 0 8px;
+  letter-spacing: 0;
 }
 
 .brand-copy p {
-  margin: 13px 0 0;
+  margin: 0;
   color: #858585;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.2px;
 }
 
 .header-rule {
-  height: 3px;
-  margin: 20px 0 24px;
-  background: var(--navy);
-  border-radius: 999px;
+  height: 0;
+  border-top: 1.5px dashed var(--navy);
+  opacity: 0.65;
+  margin: 16px 0 24px;
 }
 
 /* Upload zone */
 
 .drop-zone {
-  min-height: 395px;
-  padding: 40px 30px;
+  min-height: 200px;
+  padding: 25px 30px;
   border: 2px solid var(--navy);
   border-radius: 20px;
   background: white;
@@ -116,6 +144,12 @@ button {
     transform 160ms ease,
     border-color 160ms ease,
     box-shadow 160ms ease;
+}
+
+.header-rule,
+.drop-zone {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .drop-zone:hover,
@@ -141,11 +175,12 @@ button {
 
 .truck-illustration {
   display: block;
-  width: 205px;
+  width: 140px;
   max-width: 45%;
   height: auto;
   margin: 0 auto 22px;
   object-fit: contain;
+  opacity: 0.8;
 }
 
 .drop-zone h1 {
@@ -169,10 +204,10 @@ button {
 
 .conversion-panel {
   position: relative;
-  height: 260px;
+  height: 140px;
   margin-top: 32px;
   overflow: hidden;
-  border: 3px dashed var(--navy);
+  border: 1.5px dashed var(--navy);
   border-radius: 20px;
   background: rgba(248, 248, 248, 0.82);
 }
@@ -190,7 +225,7 @@ button {
   margin: 0;
   place-items: center;
   color: #a7b5e1;
-  font-size: 23px;
+  font-size: 16px;
   font-weight: 900;
   text-align: center;
 }
@@ -199,7 +234,7 @@ button {
   margin: 0;
   color: var(--navy);
   font-family: "Courier New", monospace;
-  font-size: 13px;
+  font-size: 11px;
   line-height: 1.5;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
