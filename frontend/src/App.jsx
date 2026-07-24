@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import "./App.css";
+const asset = (file) => `${import.meta.env.BASE_URL}assets/${file}`;
 
 const MAX_FILES = 3;
 
@@ -200,7 +201,7 @@ function App() {
         <header className="brand-header">
           <img
             className="brand-logo"
-            src="/assets/liteload-logo.svg"
+            src={asset("liteload-logo.svg")}
             alt="LiteLoad"
           />
 
@@ -242,7 +243,7 @@ function App() {
 
           <img
             className="truck-illustration"
-            src="/assets/liteload-truck.png"
+            src={asset("liteload-truck.png")}
             alt=""
           />
 
