@@ -6,10 +6,15 @@
   --navy: #13295d;
   --navy-soft: #8793ba;
   --lime: #91aa1c;
+  --orange: #ef7d32;
   --background: #dedede;
   --button-disabled: #9eb2cf;
   --shadow: rgba(20, 35, 70, 0.22);
 }
+
+/* ==========================================
+   Global Reset
+========================================== */
 
 *,
 *::before,
@@ -35,6 +40,10 @@ button {
   border: 0;
 }
 
+/* ==========================================
+   Application Layout
+========================================== */
+
 .app {
   position: relative;
   width: 100%;
@@ -48,26 +57,32 @@ button {
   position: absolute;
   inset: 0;
   z-index: 1;
+
   background-image: url("/assets/liteload-background-static.svg");
   background-position: center top;
   background-repeat: repeat-y;
   background-size: 100% auto;
+
   pointer-events: none;
 }
 
 .app-shell {
   position: relative;
   z-index: 2;
+
   width: min(880px, 100%);
   margin: 0 auto;
 }
 
-/* Brand */
+/* ==========================================
+   Brand Header
+========================================== */
 
 .brand-header {
   display: flex;
   align-items: center;
   gap: 14px;
+
   min-height: 68px;
   padding: 0;
 }
@@ -76,6 +91,7 @@ button {
   width: 77px;
   height: 77px;
   margin-left: -14px;
+
   flex: 0 0 auto;
   object-fit: contain;
 }
@@ -91,7 +107,8 @@ button {
 .wordmark {
   display: flex;
   align-items: baseline;
-  gap: 0;
+  gap: 0.12em;
+
   font-size: clamp(30px, 4vw, 42px);
   font-weight: 900;
   line-height: 0.82;
@@ -107,19 +124,15 @@ button {
   letter-spacing: -1.5px;
 }
 
+/* The color contrast now separates LITE and LOAD. */
+
 .hyphen {
-  display: inline-block;
-  align-self: center;
-  margin: 0 8px;
-  color: var(--navy);
-  font-size: 0.82em;
-  line-height: 1;
-  letter-spacing: 0;
-  transform: translateY(-1px);
+  display: none;
 }
 
 .brand-copy p {
   margin: 0;
+
   color: #858585;
   font-size: 14px;
   font-weight: 700;
@@ -132,22 +145,29 @@ button {
   width: 100%;
   height: 0;
   margin: 16px 0 24px;
+
   border-top: 1.5px dashed var(--navy);
   opacity: 0.65;
 }
 
-/* Upload zone */
+/* ==========================================
+   Upload Zone
+========================================== */
 
 .drop-zone {
   width: 100%;
   min-height: 200px;
   padding: 25px 30px;
+
   border: 2px solid var(--navy);
   border-radius: 20px;
-  background: white;
+
+  background: #ffffff;
   box-shadow: 3px 5px 0 var(--shadow);
+
   text-align: center;
   cursor: pointer;
+
   transition:
     transform 160ms ease,
     border-color 160ms ease,
@@ -168,25 +188,30 @@ button {
 
 .file-input {
   position: absolute;
+
   width: 1px;
   height: 1px;
   overflow: hidden;
+
   opacity: 0;
   pointer-events: none;
 }
 
 .truck-illustration {
   display: block;
+
   width: 140px;
   max-width: 45%;
   height: auto;
   margin: 0 auto 22px;
+
   object-fit: contain;
   opacity: 0.8;
 }
 
 .drop-zone h1 {
   margin: 0;
+
   color: #383838;
   font-size: clamp(30px, 4.4vw, 48px);
   font-style: italic;
@@ -197,21 +222,28 @@ button {
 
 .drop-zone p {
   margin: 28px 0 0;
+
   color: var(--lime);
   font-size: 15px;
   font-weight: 800;
 }
 
-/* Conversion queue */
+/* ==========================================
+   Conversion Queue
+========================================== */
 
 .conversion-panel {
   position: relative;
+
   height: 120px;
   margin-top: 32px;
   overflow: hidden;
+
   border: 1.5px dashed var(--navy);
   border-radius: 20px;
+
   background: rgba(248, 248, 248, 0.82);
+
   transition:
     border-color 160ms ease,
     box-shadow 160ms ease;
@@ -220,7 +252,9 @@ button {
 .conversion-panel.has-file {
   height: auto;
   padding: 14px;
+
   border: 2px solid var(--navy);
+
   background: rgba(248, 248, 248, 0.9);
   box-shadow: 3px 5px 0 var(--shadow);
 }
@@ -234,7 +268,9 @@ button {
   display: grid;
   height: 100%;
   margin: 0;
+
   place-items: center;
+
   color: #a7b5e1;
   font-size: 16px;
   font-weight: 900;
@@ -243,36 +279,52 @@ button {
 
 .file-list {
   display: flex;
-  max-height: 250px;
-  overflow-y: auto;
-  overflow-x: hidden;
   flex-direction: column;
   gap: 14px;
+
+  max-height: 250px;
   padding-right: 6px;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
   scrollbar-gutter: stable;
 }
 
+/* ==========================================
+   File Card
+========================================== */
+
 .file-card {
   display: grid;
-  grid-template-columns: 78px minmax(0, 1fr) 34px 24px;
-  gap: 14px;
+  grid-template-columns:
+    78px
+    minmax(0, 1fr)
+    auto;
   align-items: center;
+  gap: 14px;
+
   min-height: 88px;
   padding: 16px 18px;
+
   border-radius: 18px;
   background: #ffffff;
+
   flex: 0 0 auto;
 }
 
 .file-type {
   display: grid;
+  place-items: center;
+
   width: 72px;
   min-height: 34px;
   padding: 0 8px;
-  place-items: center;
+
   border-radius: 7px;
   background: var(--lime);
-  color: #383838;
+
+  color: #ffffff;
   font-size: 13px;
   font-weight: 900;
   letter-spacing: 0.4px;
@@ -283,46 +335,166 @@ button {
   min-width: 0;
 }
 
+/* ==========================================
+   Progress Bar
+========================================== */
+
 .progress-track {
   width: 100%;
   height: 9px;
   overflow: hidden;
+
   border-radius: 999px;
-  background: #dce3d2;
+  background: rgba(239, 125, 50, 0.16);
 }
 
 .progress-fill {
   width: var(--progress, 0%);
   height: 100%;
+
   border-radius: inherit;
   background: var(--lime);
+
   transition: width 350ms ease;
+}
+
+.progress-fill.is-error {
+  background: var(--orange);
 }
 
 .file-size {
   margin: 8px 0 0;
-  color: #666;
+
+  color: #666666;
   font-size: 14px;
   line-height: 1.25;
   text-align: left;
 }
 
+/* ==========================================
+   Status + Action Rail
+========================================== */
+
+.file-status-area {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+
+  min-width: max-content;
+  margin-left: auto;
+
+  flex-shrink: 0;
+}
+
 .file-status {
-  display: grid;
-  min-width: 28px;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  flex: 0 0 32px;
+
   color: var(--lime);
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 800;
   line-height: 1;
 }
 
+.file-status.is-error {
+  color: var(--orange);
+}
+
+.file-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+
+  flex-wrap: nowrap;
+}
+
+/* ==========================================
+   File Action Buttons
+========================================== */
+
+.file-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+  padding: 0;
+
+  flex: 0 0 32px;
+
+  border: 0;
+  border-radius: 5px;
+
+  background: transparent;
+  color: var(--navy);
+
+  cursor: pointer;
+
+  transition:
+    background-color 120ms ease,
+    color 120ms ease,
+    opacity 120ms ease,
+    transform 120ms ease;
+}
+
+.file-action-button svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+
+  pointer-events: none;
+}
+
+.file-action-button:hover:not(:disabled) {
+  background: rgba(19, 41, 93, 0.09);
+  transform: translateY(-1px);
+}
+
+.file-action-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.file-action-button:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 2px;
+}
+
+.file-action-button:disabled {
+  color: #8f8f8f;
+  opacity: 0.42;
+
+  cursor: not-allowed;
+}
+
+.remove-button:hover:not(:disabled) {
+  background: rgba(239, 125, 50, 0.12);
+  color: var(--orange);
+}
+
+/* ==========================================
+   Processing Spinner
+========================================== */
+
 .file-spinner {
+  display: block;
+
   width: 19px;
   height: 19px;
-  border: 2px solid #dfe4ec;
-  border-top-color: var(--navy);
+
+  border: 3px solid rgba(145, 170, 28, 0.25);
+  border-top-color: var(--lime);
   border-radius: 50%;
+
   animation: file-spin 750ms linear infinite;
 }
 
@@ -332,43 +504,33 @@ button {
   }
 }
 
-.file-remove {
-  padding: 0;
-  background: transparent;
-  color: #999;
-  font-size: 24px;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.file-remove:hover:not(:disabled) {
-  color: var(--navy);
-}
-
-.file-remove:disabled {
-  cursor: not-allowed;
-  opacity: 0.45;
-}
-
-/* Buttons */
+/* ==========================================
+   Primary Action Buttons
+========================================== */
 
 .action-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
+
   margin-top: 20px;
 }
 
 .action-button {
   min-height: 46px;
   padding: 8px 18px;
+
   border-radius: 14px;
+
   background: var(--navy);
-  color: white;
+  color: #ffffff;
+
   font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.2px;
+
   cursor: pointer;
+
   transition:
     transform 150ms ease,
     opacity 150ms ease,
@@ -393,6 +555,10 @@ button {
   cursor: not-allowed;
 }
 
+/* ==========================================
+   Reduced Motion
+========================================== */
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -404,7 +570,9 @@ button {
   }
 }
 
-/* Responsive */
+/* ==========================================
+   Responsive
+========================================== */
 
 @media (max-width: 700px) {
   .app {
@@ -427,19 +595,45 @@ button {
   }
 
   .file-card {
-    grid-template-columns: 64px minmax(0, 1fr) 28px 22px;
+    grid-template-columns:
+      64px
+      minmax(0, 1fr)
+      auto;
     gap: 10px;
+
     padding: 14px;
   }
 
   .file-type {
     width: 60px;
     padding: 0 6px;
+
     font-size: 12px;
   }
 
   .file-size {
     font-size: 13px;
+  }
+
+  .file-status-area {
+    gap: 8px;
+  }
+
+  .file-actions {
+    gap: 4px;
+  }
+
+  .file-status,
+  .file-action-button {
+    width: 28px;
+    height: 28px;
+
+    flex-basis: 28px;
+  }
+
+  .file-action-button svg {
+    width: 18px;
+    height: 18px;
   }
 
   .action-row {
